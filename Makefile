@@ -203,6 +203,7 @@ UPROGS=\
 	$U/_redirect\
 	$U/_primes\
 	$U/_find\
+	$U/_xargs\
 
 
 
