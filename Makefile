@@ -197,6 +197,7 @@ UPROGS=\
 	$U/_sleep\
 	$U/_copy\
 	$U/_open\
+	$U/_fork\
 
 
 
