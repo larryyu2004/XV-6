@@ -202,6 +202,7 @@ UPROGS=\
 	$U/_forkexec\
 	$U/_redirect\
 	$U/_primes\
+	$U/_find\
 
 
 
