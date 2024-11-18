@@ -198,6 +198,7 @@ UPROGS=\
 	$U/_copy\
 	$U/_open\
 	$U/_fork\
+	$U/_exec\
 
 
 
