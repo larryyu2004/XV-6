@@ -144,11 +144,14 @@ syscall(void)
   num = p->trapframe->a7;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     p->trapframe->a0 = syscalls[num]();
-    int trace_mask = p->trace_mask;
+    
     //Check the LSB (least significant bit) == 1
     if((p->trace_mask>>num) & 1){
       //3: syscall read -> 1023
       printf("%d: syscall %s -> %d\n", p->pid, syscall_name[num], p->trapframe->a0);
+    }else{
+      printf("%d %s: unknow syscall &d\n", p->pid, p->name, num);
+      p->trapframe->a0 = -1;
     }
     
     
