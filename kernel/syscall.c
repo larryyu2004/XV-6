@@ -148,7 +148,7 @@ syscall(void)
     //Check the LSB (least significant bit) == 1
     if((trace_mask>>num) & 1){
       //3: syscall read -> 1023
-      printf("%d, syscall %s -> %d\n", p->pid, syscall_name[num-1], p->trapframe->a0);
+      printf("%d: syscall %s -> %d\n", p->pid, syscall_name[num-1], p->trapframe->a0);
     }
     
     
