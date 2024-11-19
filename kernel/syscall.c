@@ -106,6 +106,31 @@ extern uint64 sys_write(void);
 extern uint64 sys_uptime(void);
 extern uint64 sys_trace(void);
 
+static char *syscall_name[] = {
+  [SYS_fork]    "fork",
+  [SYS_exit]    "exit",
+  [SYS_wait]    "wait",
+  [SYS_pipe]    "pipe",
+  [SYS_read]    "read",
+  [SYS_kill]    "kill",
+  [SYS_exec]    "exec",
+  [SYS_fstat]   "fstat",
+  [SYS_chdir]   "chdir",
+  [SYS_dup]     "dup",
+  [SYS_getpid]  "getpid",
+  [SYS_sbrk]    "sbrk",
+  [SYS_sleep]   "sleep",
+  [SYS_uptime]  "uptime",
+  [SYS_open]    "open",
+  [SYS_write]   "write",
+  [SYS_mknod]   "mknod",
+  [SYS_unlink]  "unlink",
+  [SYS_link]    "link",
+  [SYS_mkdir]   "mkdir",
+  [SYS_close]   "close",
+  [SYS_trace]   "trace",
+};
+
 static uint64 (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
 [SYS_exit]    sys_exit,
@@ -131,9 +156,7 @@ static uint64 (*syscalls[])(void) = {
 [SYS_trace]   sys_trace,
 };
 
-static char* syscall_name[] = {
-  "fork", "exit", "wait", "pipe", "read", "kill", "exec", "fstat", "chdir", "dup", "getpid", "sbrk", "sleep", "sleep", "uptime", "open", "write", "mknod", "unlink", "link", "mkdir", "close", "trace"
-};
+
 
 void
 syscall(void)
@@ -146,9 +169,9 @@ syscall(void)
     p->trapframe->a0 = syscalls[num]();
     
     //Check the LSB (least significant bit) == 1
-    if((p->trace_mask>>num) & 1){
+    if((p->trace_mask >> num) & 1){
       //3: syscall read -> 1023
-      printf("%d: syscall %s -> %d\n", p->pid, syscall_name[num-1], p->trapframe->a0);
+      printf("%d: syscall %s -> %d\n", p->pid, syscall_names[num], p->trapframe->a0);
     }
   } else {
     printf("%d %s: unknown sys call %d\n", p->pid, p->name, num);
