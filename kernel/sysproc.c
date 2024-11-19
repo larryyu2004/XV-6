@@ -105,5 +105,6 @@ sys_trace(void)
     return -1;
   struct proc *p = myproc();
   p->trace_mask = mask;
+  printf("Trace system call set with mask: %d\n", mask); // Debugging statement
   return 0;
 }
