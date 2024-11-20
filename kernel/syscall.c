@@ -164,6 +164,7 @@ syscall(void)
   int num;
   struct proc *p = myproc();
 
+  //In XV-6, trapframe->a7 --> syscall num
   num = p->trapframe->a7;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     p->trapframe->a0 = syscalls[num]();

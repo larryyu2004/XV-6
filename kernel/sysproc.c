@@ -101,10 +101,14 @@ uint64
 sys_trace(void)
 {
   int mask;
+  //Fetch the mask argument from user space
   if(argint(0, &mask) < 0)
     return -1;
 
+  //Get the current process
+  //myproc() is a function that retrieves the current process's proc (a data structure that represents a process) structure
   struct proc *p = myproc();
+  //Set the trace mask in the process structure
   p->trace_mask = mask;
   
   return 0;
