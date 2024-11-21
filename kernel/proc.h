@@ -109,5 +109,5 @@ struct proc {
   //for trace
   uint trace_mask;
 };
-struct proc *myproc(void);
+
 uint64 acquire_nproc(void);
