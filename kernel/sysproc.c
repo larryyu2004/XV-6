@@ -7,6 +7,9 @@
 #include "spinlock.h"
 #include "proc.h"
 #include "sysinfo.h"
+#include "kalloc.c"
+#include "proc.c"
+
 
 uint64
 sys_exit(void)
@@ -120,8 +123,8 @@ uint64 sys_sysinfo(void){
   uint64 addr;
   struct proc *p = myproc();
 
-  info.nproc = -1;
-  info.freemem = -2;
+  info.nproc = acquire_nproc();
+  info.freemem = acquire_freemen();
   
   if(argaddr(0, &addr) < 0)
     return -1;
