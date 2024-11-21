@@ -7,8 +7,7 @@
 #include "spinlock.h"
 #include "proc.h"
 #include "sysinfo.h"
-#include "kalloc.c"
-#include "proc.c"
+
 
 
 uint64
@@ -130,7 +129,5 @@ uint64 sys_sysinfo(void){
     return -1;
   if(copyout(p->pagetable, addr, (char *)&info, sizeof(info)) < 0)
       return -1;
-
-  
   return 0;
 }
