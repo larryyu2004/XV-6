@@ -7,6 +7,7 @@
 #include "spinlock.h"
 #include "proc.h"
 #include "sysinfo.h"
+#include "kalloc.h"
 
 
 
