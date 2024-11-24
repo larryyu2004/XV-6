@@ -10,8 +10,6 @@
 #include "kalloc.h"
 
 
-
-
 uint64
 sys_exit(void)
 {
