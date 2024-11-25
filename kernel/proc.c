@@ -663,7 +663,7 @@ uint64 acquire_nproc(){
   struct proc *p;
   int cnt = 0;
   
-  
+  //NPROC ->  maximum number of processes
   for(p = proc; p < &proc[NPROC]; p++) {
     acquire(&p->lock);
     if(p->state != UNUSED) {
